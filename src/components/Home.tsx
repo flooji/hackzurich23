@@ -61,7 +61,7 @@ export const Home: React.FunctionComponent<HomeProps> = (props) => {
       </div>
       <div className="flex justify-center md:justify-start pb-2">
         <button
-            className="py-3 bg-orange-600 text-white px-8 rounded-full text-lg w-3/4 md:w-64 md:text-xl font-bold"
+            className="py-2 my-6 md:my-3 bg-orange-600 text-white px-8 rounded-full text-lg w-3/4 md:w-64 md:text-xl font-bold"
             onClick={() => {
               navigate('/cook');
             }}
