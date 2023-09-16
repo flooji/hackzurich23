@@ -24,9 +24,8 @@
 			"inFolder": false,
 			"open": true,
 			"fileNaming": {
-				"name": "{name}",
-				"postfix": "",
-				"casing": "snake"
+				"casing": "snake",
+				"name": "{name}"
 			},
 			"path": "/components",
 			"class": false,
@@ -42,9 +41,8 @@
 			"inFolder": false,
 			"open": true,
 			"fileNaming": {
-				"name": "{name}",
-				"postfix": "",
-				"casing": "snake"
+				"casing": "snake",
+				"name": "{name}"
 			},
 			"path": "/pages"
 		},
@@ -57,9 +55,8 @@
 			"inFolder": false,
 			"open": true,
 			"fileNaming": {
-				"name": "{name}",
-				"postfix": "",
-				"casing": "snake"
+				"casing": "snake",
+				"name": "{name}"
 			},
 			"path": "/views"
 		},
@@ -72,9 +69,8 @@
 			"inFolder": false,
 			"open": true,
 			"fileNaming": {
-				"name": "{name}",
-				"postfix": "",
-				"casing": "snake"
+				"casing": "snake",
+				"name": "{name}"
 			},
 			"path": "/layouts"
 		}
