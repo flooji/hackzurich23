@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition"; // FUTURE TODO: polylabs would make recognition better and more reliable
+import LiveConversation from "./LiveConversation";
 
 const Dictaphone = () => {
   const {
@@ -13,24 +14,24 @@ const Dictaphone = () => {
 
   const [listeningPrompt, setListeningPrompt] = React.useState(false);
   const [lastWordTime, setLastWordTime] = React.useState(0);
+  const [promptUser, setPromptUser] = React.useState("");
 
   const secondsSinceLastWordThreshold = 5; // seconds
 
   useEffect(() => {
-    console.log("New transcript :", transcript);
+    //console.log("New transcript :", transcript);
     let now = new Date().getTime();
 
-    if (listeningPrompt) {
-      console.log(
-        "listeningPrompt is True. Time since last word: ",
-        (now - lastWordTime) / 1000,
-        "s"
-      );
+    if (promptUser !== "") {
+      setPromptUser("");
+    }
 
+    if (listeningPrompt) {
       // If user stopped talking for 5 seconds, send transcript to server
       if (now - lastWordTime > secondsSinceLastWordThreshold * 1000) {
         console.log("SENDING TRANSCRIPT TO SERVER:");
         console.log(transcript);
+        setPromptUser(transcript);
         setListeningPrompt(false);
         resetTranscript();
       }
@@ -59,6 +60,7 @@ const Dictaphone = () => {
 
   return (
     <div>
+      <LiveConversation prompt={promptUser} />
       <p>Microphone: {listening ? "on" : "off"}</p>
       <button
         onClick={() =>

@@ -230,11 +230,18 @@ const LiveConversation = (props: any) => {
   useEffect(() => {
     const starterPrompt =
       'From now on you are my private chef instructor. I will provide you a recipe, and you will break it to a few steps of cooking: every time I ask for a step, give me an instruction and wait until I ask a new one (do not give me a few instruction in one time, wait for me to do them first). I want you to talk to me in a style (or "accent") of the origin of the dish (e.g. for pizza, talk to me in Italian style). Be very concise and provide short instructions.';
-    //console.log("UseEffect");
+    console.log("UseEffect");
 
     // Do the other two prompts
     //handleSendRequest(starterPrompt2);
   }, []);
+
+  // If the prompt is not empty, call API
+  useEffect(() => {
+    if (props.prompt !== "") {
+      handleSendRequest(props.prompt);
+    }
+  }, [props.prompt]);
 
   const handleSendRequest = async (message: any) => {
     const newMessage = {
