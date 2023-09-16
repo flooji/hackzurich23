@@ -1,6 +1,9 @@
 import openai
 import glob
 import json
+import matplotlib.pyplot as plt
+import requests
+from PIL import Image
 openai.api_key = "KEY"
 MODEL = "gpt-3.5-turbo"
 
@@ -13,7 +16,7 @@ def prompt_chatgpt(prompt, history=[]):
 def get_suggestions(ingredient, product_list):
     suggestions = []
     for pro in product_list:
-        if " " + ingredient.lower() + " " in pro['name'].lower():
+        if ingredient.lower() in pro['name'].lower():
             suggestions.append(pro)
     return suggestions if len(suggestions) > 0 else ingredient
 
