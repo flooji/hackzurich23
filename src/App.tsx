@@ -58,7 +58,7 @@ function App() {
 
 
     return (
-        <div className="App"><nav></nav>
+        <div className="App">
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<Home />}>
@@ -67,21 +67,13 @@ function App() {
                     </Route>
                 </Routes>
             </BrowserRouter>
-            <div className="p-5 bg-amber-300 h-full w-full">
-                <h1 className="text-3xl">
-                    Good evening chef!
-                </h1>
-                <h2 className="text-xl">
-                    Today's special:
-                </h2>
-                <button onClick={() => setLoadAudio(true)}>Load and Play Audio</button>
-                {audioSrc && (
-                    <audio autoPlay>
-                        <source src={audioSrc} type="audio/mpeg" />
-                        Your browser does not support the audio element.
-                    </audio>
-                )}
-            </div>
+            <button onClick={() => setLoadAudio(true)}>Load and Play Audio</button>
+            {audioSrc && (
+                <audio autoPlay>
+                    <source src={audioSrc} type="audio/mpeg" />
+                    Your browser does not support the audio element.
+                </audio>
+            )}
         </div>
     );
 }

@@ -1,13 +1,21 @@
 import AppHeader from "./AppHeader";
 import Dictaphone from "../Dictaphone";
+import LiveConversation from "../LiveConversation";
 
 interface CookProps {}
 
 export const Cook: React.FunctionComponent<CookProps> = (props) => {
-  return <div className="bg-gray-900 text-white h-screen w-full">
-    <AppHeader />
-    <Dictaphone />
-  </div>
+  return (
+    <div className="bg-[#1a1a1a] text-white h-screen w-full">
+      <AppHeader />
+      <Dictaphone />
+      <img
+        src={"/images/SoundWave.gif"}
+        className="mx-auto absolute bottom-0"
+      />
+      {/*<LiveConversation />*/}
+    </div>
+  );
 };
 
 Cook.propTypes = {};

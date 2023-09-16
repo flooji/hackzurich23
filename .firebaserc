@@ -1,7 +1,5 @@
 {
   "projects": {
-    "prod": "hackzurich23"
-  },
-  "targets": {},
-  "etags": {}
+    "default": "hackzurich23-app"
+  }
 }
