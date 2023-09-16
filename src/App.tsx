@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import {Layout} from "./components/Layout";
-import {Home} from "./components/home";
+import {Home} from "./components/Home";
 import {Cook} from "./components/cook";
 
 function App() {
@@ -62,9 +61,9 @@ function App() {
         <div className="App"><nav></nav>
             <BrowserRouter>
                 <Routes>
-                    <Route path="/" element={<Layout />}>
-                        <Route index element={<Home />} />
-                        <Route path="/cook" element={<Cook />} />
+                    <Route path="/" element={<Home />}>
+                    </Route>
+                    <Route path={"/cook"} element={<Cook />}>
                     </Route>
                 </Routes>
             </BrowserRouter>
