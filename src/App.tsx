@@ -2,24 +2,30 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import VoiceRecorder from "./VoiceRecorder";
+import {BrowserRouter, Route} from "react-router-dom";
+import Home from "./Home";
+import Cook from "./Cook";
+import {Switch} from "@mantine/core";
+import AppHeader from "./AppHeader";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <VoiceRecorder></VoiceRecorder>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    return (
+        <div className="App">
+            <BrowserRouter>
+                <Switch>
+                    <Route path={"/"}>
+                        <Home/>
+                    </Route>
+                    <Route path={"/cook"}>
+                        <Cook/>
+                    </Route>
+                </Switch>
+            </BrowserRouter>
+            <AppHeader/>
+            <p>Default text</p>
+        </div>
+    );
 }
 
 export default App;
