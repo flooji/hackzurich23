@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {Home} from "./components/Home";
-import {IngredientsPage} from "./components/IngredientsPage";
 import {Loader} from "./components/Loader";
 import {Cook} from "./components/cook";
+import IngredientsPage from "./components/IngredientsPage";
 
 function App() {
     return (
