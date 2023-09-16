@@ -74,7 +74,7 @@ const Dictaphone = () => {
     return (
         <div className="bg-white text-black">
             {
-                listening ? recordIndication : null
+                listening && recordIndication
             }
             <p>Microphone: {listening ? "on" : "off"}</p>
             <button onClick={SpeechRecognition.stopListening}>Stop</button>
