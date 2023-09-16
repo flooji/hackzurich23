@@ -14,10 +14,10 @@ const Dictaphone = () => {
   const [listeningPrompt, setListeningPrompt] = React.useState(false);
   const [lastWordTime, setLastWordTime] = React.useState(0);
 
-  const secondsSinceLastWordThreshold = 5; // seconds
+  const secondsSinceLastWordThreshold = 4; // seconds
 
   useEffect(() => {
-    //console.log("New transcript :", transcript);
+    console.log("New transcript :", transcript);
     let now = new Date().getTime();
 
     if (listeningPrompt) {
