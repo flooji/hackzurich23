@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition"; // FUTURE TODO: polylabs would make recognition better and more reliable
-import LiveConversation from "./LiveConversation";
 
 const Dictaphone = () => {
   const {
@@ -15,13 +14,7 @@ const Dictaphone = () => {
   const [listeningPrompt, setListeningPrompt] = React.useState(false);
   const [lastWordTime, setLastWordTime] = React.useState(0);
 
-  const secondsSinceLastWordThreshold = 4; // seconds
-  //useEffect(() => {
-  //  SpeechRecognition.startListening({
-  //    continuous: true,
-  //    language: "en-US",
-  //  });
-  //}, []);
+  const secondsSinceLastWordThreshold = 5; // seconds
 
   useEffect(() => {
     console.log("New transcript :", transcript);
@@ -64,23 +57,8 @@ const Dictaphone = () => {
     return <span>Browser doesn't support speech recognition.</span>;
   }
 
-  const recordIndication = (
-    <div className="absolute right-10 top-24">
-      <span className="relative flex h-8 w-8">
-        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
-        <span className="relative inline-flex rounded-full w-8 h-8 bg-red-700"></span>
-      </span>
-    </div>
-  );
-
   return (
-    <div className="bg-white text-black">
-      {/*{*/}
-      {/*    listening && recordIndication*/}
-      {/*}*/}
-      {/*<LiveConversation
-        transcript={listeningPrompt ? transcript : 'Say "Okay Chef"'}
-  />*/}
+    <div>
       <p>Microphone: {listening ? "on" : "off"}</p>
       <button
         onClick={() =>
