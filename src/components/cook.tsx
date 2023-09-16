@@ -1,9 +1,9 @@
-import PropTypes from "prop-types";
+import AppHeader from "./AppHeader";
 
 interface CookProps {}
 
 export const Cook: React.FunctionComponent<CookProps> = (props) => {
-  return <div></div>;
+  return <AppHeader /> ;
 };
 
 Cook.propTypes = {};
