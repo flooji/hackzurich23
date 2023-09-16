@@ -21,9 +21,9 @@ export const Loader: React.FunctionComponent<LoaderProps> = (props) => {
       <img src={'/images/loading_animation.gif'} className="max-w-lg mb-10"/>
       
       {/* Text at the bottom */}
-      <div className="absolute bottom-10 text-center">
-        <div>establishing mise</div>
-        <div>en place...</div>
+      <div className="absolute bottom-16 text-center">
+        <p className="text-xl">establishing mise</p>
+        <p className="text-xl">en place...</p>
       </div>
     </div>
   );
