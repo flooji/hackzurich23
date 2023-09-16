@@ -58,7 +58,7 @@ function App() {
 
 
     return (
-        <div className="App">
+        <div className="App font-nunito">
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<Home />}>
