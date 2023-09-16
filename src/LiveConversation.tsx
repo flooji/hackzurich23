@@ -214,26 +214,23 @@ Now you know all the tricks to make a perfect carbonara recipe. So come on! Letâ
 
 Now list the ingredients I should buy (in two python lists, names: ingredients_names, and descriptions: ingredients_descriptions), and wait until I ask you for the first step. When i say "step", I mean "instruction". One by one!`;
 
-const LiveConversation = () => {
+const LiveConversation = (props: any) => {
   const [messages, setMessages] = useState([
     {
       message: "Ready to cook?",
       sentTime: "just now",
       sender: "ChatGPT",
-      //direction: 1, // direction: "incoming" | "outgoing" | 0 | 1
+      //direction: 1, //  "incoming" | "outgoing" | 0 | 1
       //position: "single", // "single" | "first" | "normal" | "last" | 0 | 1 | 2 | 3
     },
   ]);
   const [isTyping, setIsTyping] = useState(false);
-  const [counter, setCounter] = useState(0);
 
   // When mounts for the first time, send context to ChatGPT
   useEffect(() => {
     const starterPrompt =
       'From now on you are my private chef instructor. I will provide you a recipe, and you will break it to a few steps of cooking: every time I ask for a step, give me an instruction and wait until I ask a new one (do not give me a few instruction in one time, wait for me to do them first). I want you to talk to me in a style (or "accent") of the origin of the dish (e.g. for pizza, talk to me in Italian style). Be very concise and provide short instructions.';
-    setCounter(counter + 1);
-    console.log(counter);
-    console.log("UseEffect");
+    //console.log("UseEffect");
 
     // Do the other two prompts
     //handleSendRequest(starterPrompt2);
@@ -309,8 +306,6 @@ const LiveConversation = () => {
               }
             >
               {messages.map((message, i) => {
-                console.log(message);
-                //return <Message key={i} model={message} />;
                 // TODO skip the two messages
                 return (
                   <p>

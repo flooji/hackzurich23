@@ -1,6 +1,5 @@
 import AppHeader from "./AppHeader";
 import Dictaphone from "../Dictaphone";
-import LiveConversation from "../LiveConversation";
 
 interface CookProps {}
 
@@ -13,7 +12,6 @@ export const Cook: React.FunctionComponent<CookProps> = (props) => {
         src={"/images/SoundWave.gif"}
         className="mx-auto absolute bottom-0"
       />
-      {/*<LiveConversation />*/}
     </div>
   );
 };
