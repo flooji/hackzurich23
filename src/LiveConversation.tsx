@@ -10,7 +10,7 @@ import {
   TypingIndicator,
 } from "@chatscope/chat-ui-kit-react";
 
-const API_KEY = "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";
+const API_KEY = "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";
 
 const starterPrompt =
   'From now on you are my private chef instructor. I will provide you a recipe, and you will break it to a few steps of cooking: every time I ask for a step, give me an instruction and wait until I ask a new one (do not give me a few instruction in one time, wait for me to do them first). I want you to talk to me in a style (or "accent") of the origin of the dish (e.g. for pizza, talk to me in Italian style). Be very concise and provide short instructions.';
@@ -225,11 +225,11 @@ const LiveConversation = (props: any) => {
     },
   ]);
   const [isTyping, setIsTyping] = useState(false);
+  const [loadAudio, setLoadAudio] = useState(false);
+  const [audioSrc, setAudioSrc] = useState<string | null>(null);
 
   // When mounts for the first time, send context to ChatGPT
   useEffect(() => {
-    const starterPrompt =
-      'From now on you are my private chef instructor. I will provide you a recipe, and you will break it to a few steps of cooking: every time I ask for a step, give me an instruction and wait until I ask a new one (do not give me a few instruction in one time, wait for me to do them first). I want you to talk to me in a style (or "accent") of the origin of the dish (e.g. for pizza, talk to me in Italian style). Be very concise and provide short instructions.';
     console.log("UseEffect");
 
     // Do the other two prompts
@@ -242,6 +242,51 @@ const LiveConversation = (props: any) => {
       handleSendRequest(props.prompt);
     }
   }, [props.prompt]);
+
+  //useEffect(() => {
+  //  if (!loadAudio) return;
+
+  async function fetchAudio(message: any) {
+    const url =
+      //"https://api.elevenlabs.io/v1/text-to-speech/EXAVITQu4vr4xnSDxMaL";
+      "https://api.elevenlabs.io/v1/text-to-speech/zcAOhNBS3c14rBihAFp1";
+    const data = {
+      text: message,
+      model_id: "eleven_monolingual_v1",
+      voice_settings: {
+        stability: 0.75,
+        similarity_boost: 0.75,
+      },
+    };
+    const requestOptions = {
+      method: "POST",
+      headers: {
+        Accept: "audio/mpeg",
+        "Content-Type": "application/json",
+        "xi-api-key": "e8158a5af2206088830149d46ce766bd",
+      },
+      body: JSON.stringify(data), // Convert data to string format
+    };
+
+    const response = await fetch(url, requestOptions);
+
+    if (response.ok) {
+      const audioData = await response.blob();
+      const audioUrl = URL.createObjectURL(audioData);
+      setAudioSrc(audioUrl);
+      console.log("Fetching complete!");
+    } else {
+      console.error("Failed to fetch audio");
+    }
+  }
+
+  //return () => {
+  //if (audioSrc) {
+  // Revoke the Object URL to free up resources
+  //  URL.revokeObjectURL(audioSrc);
+  //}
+  //};
+  //}, [loadAudio]);
 
   const handleSendRequest = async (message: any) => {
     const newMessage = {
@@ -262,6 +307,8 @@ const LiveConversation = (props: any) => {
           sender: "ChatGPT",
         };
         setMessages((prevMessages: any) => [...prevMessages, chatGPTResponse]);
+        console.log("Fetching audio...");
+        fetchAudio(chatGPTResponse.message);
       }
     } catch (error) {
       console.error("Error processing message:", error);
@@ -328,6 +375,22 @@ const LiveConversation = (props: any) => {
             />
           </ChatContainer>
         </MainContainer>
+        {/*<button onClick={() => setLoadAudio(true)}>Load and Play Audio</button>*/}
+        <button
+          onClick={() =>
+            fetchAudio(
+              "Hi, i'm giovanni. I'm back! Let's start with pizza, Step 1: Buy pizza from Migros. Step 2. eat it"
+            )
+          }
+        >
+          Load and Play Audio
+        </button>
+        {audioSrc && (
+          <audio autoPlay key={audioSrc}>
+            <source src={audioSrc} type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+        )}
       </div>
     </div>
   );
