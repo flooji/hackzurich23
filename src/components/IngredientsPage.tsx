@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom';
 
 const IngredientsPage = () => {
   const navigate = useNavigate();
-  const checkboxImagePath = 'images/IngredientsCheckB.png'; // Path to checkbox image
-  const backgroundImagePath = 'images/Cabonara.png'; // Path to your background image
+  const checkboxImagePath = '/images/IngredientsCheckB.png'; // Path to checkbox image
+  const backgroundImagePath = '/images/Cabonara.png'; // Path to your background image
 
   const handleImageClick = () => {
     alert('Image clicked!');
@@ -51,7 +51,7 @@ const IngredientsPage = () => {
 
       <div className="flex justify-center md:justify-start pb-2">
         <button
-          className="py-2 my-6 md:my-3 bg-orange-600 hover:bg-orange-500 text-white px-8 rounded-full text-lg w-3/4 md:w-64 md:text-xl font-bold"
+          className="py-2 my-10 md:my-3 bg-orange-600 hover:bg-orange-500 text-white px-8 rounded-full text-lg w-3/4 md:w-64 md:text-xl font-bold"
           onClick={() => {
             navigate('/cook');
           }}
