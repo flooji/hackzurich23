@@ -68,7 +68,6 @@ export const Home: React.FunctionComponent<HomeProps> = (props) => {
           Let's cook!
         </button>
       </div>
-      <button onClick={callApi}></button>
     </div>
   </div>;
 };

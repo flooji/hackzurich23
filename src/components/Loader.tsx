@@ -8,7 +8,7 @@ export const Loader: React.FunctionComponent<LoaderProps> = (props) => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigate('/cook');
+      navigate('/ingredients-page');
     }, 3000); // Redirect after 3 seconds
 
     // Cleanup timer on component unmount

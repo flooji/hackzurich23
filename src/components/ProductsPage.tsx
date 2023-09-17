@@ -105,7 +105,7 @@ const ProductsPage = () => {
         <button
           className="py-2 my-6 md:my-3 bg-orange-600 hover:bg-orange-500 text-white px-8 rounded-full text-lg w-3/4 md:w-64 md:text-xl font-bold"
           onClick={() => {
-            navigate('/cook');
+            navigate('/ingredients-page');
           }}
         >
           Ready

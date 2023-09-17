@@ -6,6 +6,11 @@ const IngredientsPage = () => {
   const checkboxImagePath = 'images/IngredientsCheckB.png'; // Path to checkbox image
   const backgroundImagePath = 'images/Cabonara.png'; // Path to your background image
 
+  const handleImageClick = () => {
+    alert('Image clicked!');
+    // Add your desired functionality here
+  };
+
   return (
     <div className="relative bg-[#1a1a1a] text-white h-full w-full flex flex-col justify-end">
       <div className="relative w-96 h-96">
@@ -20,7 +25,9 @@ const IngredientsPage = () => {
           <ul className="text-xl text-white z-10">
             <li className="px-6 mb-4 flex items-center">
               350 g of spaghetti
-              <img src={checkboxImagePath} alt="Checkbox" className="w-7 h-7" />
+              <img src={checkboxImagePath} alt="Checkbox" onClick={() => {
+              navigate('/products-page');
+            }} className="w-7 h-7" />
             </li>
             <li className="px-6 mb-4 flex items-center">
               200 g of guanciale
