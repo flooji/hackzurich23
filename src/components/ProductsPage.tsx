@@ -24,9 +24,18 @@ const ProductsPage = () => {
                 <div className="image">
                   <img src='images/BioSPag1.png' className="w-20 h-20" />
                 </div>
-                <div className="text-sm">
+                <div className="text-sm break-normal">
                   Migro Bio Vollkorn Spaghettini
                 </div>
+                <div className="line2 flex">
+                    <div>
+                      <img src={'images/Leaf.png'} alt="Image 1" className="w-4 h-4" />
+                    </div>
+                    <div>
+                      <img src={'images/Migros.png'} alt="Image 2" className="w-4 h-4" />
+                    </div>
+                    <div>CHF 1.90</div>
+                  </div>
               </div>
             </li>
             <li>
@@ -37,6 +46,15 @@ const ProductsPage = () => {
                 <div className="text-sm">
                   Alnatura Vollkorn Spaghetti
                 </div>
+                <div className="line2 flex">
+                    <div>
+                      <img src={'images/Leaf.png'} alt="Image 1" className="w-4 h-4" />
+                    </div>
+                    <div>
+                      <img src={'images/Migros.png'} alt="Image 2" className="w-4 h-4" />
+                    </div>
+                    <div>CHF 2.40</div>
+                  </div>
               </div>
             </li>
             <li>
@@ -47,6 +65,13 @@ const ProductsPage = () => {
                 <div className="text-sm">
                   Molisana Spaghetti Vollkorn
                 </div>
+                <div className="line2 flex">
+                  
+                    <div>
+                      <img src={'images/Migros.png'} alt="Image 2" className="w-4 h-4" />
+                    </div>
+                    <div>CHF 2.20</div>
+                  </div>
               </div>
             </li>
             <li>
@@ -54,9 +79,19 @@ const ProductsPage = () => {
                 <div className="image">
                 <img src='images/UrDinkel.png' className="w-20 h-20" />
                 </div>
-                <div className="text-sm">
-                  Aus der Region Bio Spaghetti 2x 500g
-                </div>
+                <p className="text-sm">
+                  <div>Aus der Region Bio Spaghetti 2x 500g</div>
+                  <div className="line2 flex">
+                    <div>
+                      <img src={'images/Leaf.png'} alt="Image 1" className="w-4 h-4" />
+                    </div>
+                    <div>
+                      <img src={'images/Migros.png'} alt="Image 2" className="w-4 h-4" />
+                    </div>
+                    <div>CHF 5.80</div>
+                  </div>
+                  
+                </p>
               </div>
             </li>
           </ul>
