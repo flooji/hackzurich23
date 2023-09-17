@@ -14,8 +14,8 @@ export const Home: React.FunctionComponent<HomeProps> = (props) => {
 
   // Define your radio options
   const radioOptions = [
-    { id: 'remy', label: 'Remy' },
-    { id: 'nonna', label: 'Nonna' },
+    { id: 'remy', label: 'Default' },
+    { id: 'nonna', label: 'Authentic' },
     { id: 'gordon', label: 'Gordon' },
   ];
 

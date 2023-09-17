@@ -9,7 +9,7 @@ import ProductsPage from "./components/ProductsPage";
 
 function App() {
     return (
-        <div className="App font-nunito h-screen">
+        <div className="App font-nunito h-full">
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<Home />}>

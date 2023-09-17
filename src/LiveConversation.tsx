@@ -1,19 +1,17 @@
-import { useState, useEffect } from "react";
+import {useState, useEffect} from "react";
 import "./App.css";
 import "@chatscope/chat-ui-kit-styles/dist/default/styles.min.css";
 import {
-  MainContainer,
-  ChatContainer,
-  MessageList,
-  Message,
-  MessageInput,
-  TypingIndicator,
+    MainContainer,
+    ChatContainer,
+    MessageList,
+    Message,
+    MessageInput,
+    TypingIndicator,
 } from "@chatscope/chat-ui-kit-react";
 
-const API_KEY = "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";
-
 const starterPrompt =
-  'From now on you are my private chef instructor. I will provide you a recipe, and you will break it to a few steps of cooking: every time I ask for a step, give me an instruction and wait until I ask a new one (do not give me a few instruction in one time, wait for me to do them first). I want you to talk to me in a style (or "accent") of the origin of the dish (e.g. for pizza, talk to me in Italian style). Be very concise and provide short instructions.';
+    'From now on you are my private chef instructor. I will provide you a recipe, and you will break it to a few steps of cooking: every time I ask for a step, give me an instruction and wait until I ask a new one (do not give me a few instruction in one time, wait for me to do them first). I want you to talk to me in a style (or "accent") of the origin of the dish (e.g. for pizza, talk to me in Italian style). Be very concise and provide short instructions.';
 const shortRecipe = `
 The recipe is the following.
 Ingredients:
@@ -215,122 +213,107 @@ Now you know all the tricks to make a perfect carbonara recipe. So come on! Letâ
 Now list the ingredients I should buy (in two python lists, names: ingredients_names, and descriptions: ingredients_descriptions), and wait until I ask you for the first step. When i say "step", I mean "instruction". One by one!`;
 
 const LiveConversation = (props: any) => {
-  const [messages, setMessages] = useState([
-    {
-      message: "Ready to cook?",
-      sentTime: "just now",
-      sender: "ChatGPT",
-      //direction: 1, //  "incoming" | "outgoing" | 0 | 1
-      //position: "single", // "single" | "first" | "normal" | "last" | 0 | 1 | 2 | 3
-    },
-  ]);
-  const [isTyping, setIsTyping] = useState(false);
-
-  // When mounts for the first time, send context to ChatGPT
-  useEffect(() => {
-    const starterPrompt =
-      'From now on you are my private chef instructor. I will provide you a recipe, and you will break it to a few steps of cooking: every time I ask for a step, give me an instruction and wait until I ask a new one (do not give me a few instruction in one time, wait for me to do them first). I want you to talk to me in a style (or "accent") of the origin of the dish (e.g. for pizza, talk to me in Italian style). Be very concise and provide short instructions.';
-    console.log("UseEffect");
-
-    // Do the other two prompts
-    //handleSendRequest(starterPrompt2);
-  }, []);
-
-  // If the prompt is not empty, call API
-  useEffect(() => {
-    if (props.prompt !== "") {
-      handleSendRequest(props.prompt);
-    }
-  }, [props.prompt]);
-
-  const handleSendRequest = async (message: any) => {
-    const newMessage = {
-      message,
-      direction: "outgoing",
-      sender: "user",
-    };
-
-    setMessages((prevMessages: any) => [...prevMessages, newMessage]);
-    setIsTyping(true);
-
-    try {
-      const response = await processMessageToChatGPT([...messages, newMessage]);
-      const content = response.choices[0]?.message?.content;
-      if (content) {
-        const chatGPTResponse = {
-          message: content,
-          sender: "ChatGPT",
-        };
-        setMessages((prevMessages: any) => [...prevMessages, chatGPTResponse]);
-      }
-    } catch (error) {
-      console.error("Error processing message:", error);
-    } finally {
-      setIsTyping(false);
-    }
-  };
-
-  async function processMessageToChatGPT(chatMessages: any) {
-    const apiMessages = chatMessages.map((messageObject: any) => {
-      const role = messageObject.sender === "ChatGPT" ? "assistant" : "user";
-      return { role, content: messageObject.message };
-    });
-
-    const apiRequestBody = {
-      model: "gpt-3.5-turbo",
-      messages: [
+    const [messages, setMessages] = useState([
         {
-          role: "system",
-          content: starterPrompt + shortRecipe,
+            message: "Ready to cook? Say 'Okay Chef' to start and then ask about the recipe!",
+            sentTime: "just now",
+            sender: "ChatGPT",
+            //direction: 1, //  "incoming" | "outgoing" | 0 | 1
+            //position: "single", // "single" | "first" | "normal" | "last" | 0 | 1 | 2 | 3
         },
-        ...apiMessages,
-      ],
+    ]);
+    const [isTyping, setIsTyping] = useState(false);
+
+    // When mounts for the first time, send context to ChatGPT
+    useEffect(() => {
+        const starterPrompt =
+            'From now on you are my private chef instructor. I will provide you a recipe, and you will break it to a few steps of cooking: every time I ask for a step, give me an instruction and wait until I ask a new one (do not give me a few instruction in one time, wait for me to do them first). I want you to talk to me in a style (or "accent") of the origin of the dish (e.g. for pizza, talk to me in Italian style). Be very concise and provide short instructions.';
+        console.log("UseEffect");
+
+        // Do the other two prompts
+        //handleSendRequest(starterPrompt2);
+    }, []);
+
+    // If the prompt is not empty, call API
+    useEffect(() => {
+        if (props.prompt !== "") {
+            handleSendRequest(props.prompt);
+        }
+    }, [props.prompt]);
+
+    const handleSendRequest = async (message: any) => {
+        const newMessage = {
+            message,
+            direction: "outgoing",
+            sender: "user",
+        };
+
+        setMessages((prevMessages: any) => [...prevMessages, newMessage]);
+        setIsTyping(true);
+
+        try {
+            const response = await processMessageToChatGPT([...messages, newMessage]);
+            const content = response.choices[0]?.message?.content;
+            if (content) {
+                const chatGPTResponse = {
+                    message: content,
+                    sender: "ChatGPT",
+                };
+                setMessages((prevMessages: any) => [...prevMessages, chatGPTResponse]);
+            }
+        } catch (error) {
+            console.error("Error processing message:", error);
+        } finally {
+            setIsTyping(false);
+        }
     };
 
-    const response = await fetch("https://api.openai.com/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        Authorization: "Bearer " + API_KEY,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(apiRequestBody),
-    });
+    async function processMessageToChatGPT(chatMessages: any) {
+        const apiMessages = chatMessages.map((messageObject: any) => {
+            const role = messageObject.sender === "ChatGPT" ? "assistant" : "user";
+            return {role, content: messageObject.message};
+        });
 
-    return response.json();
-  }
+        const apiRequestBody = {
+            model: "gpt-3.5-turbo",
+            messages: [
+                {
+                    role: "system",
+                    content: starterPrompt + shortRecipe,
+                },
+                ...apiMessages,
+            ],
+        };
 
-  return (
-    <div className="App">
-      <div style={{ position: "relative", height: "800px", width: "700px" }}>
-        <MainContainer>
-          <ChatContainer>
-            <MessageList
-              scrollBehavior="smooth"
-              typingIndicator={
-                isTyping ? (
-                  <TypingIndicator content="ChatGPT is typing" />
-                ) : null
-              }
-            >
-              {messages.map((message, i) => {
-                // TODO skip the two messages
-                return (
-                  <p>
-                    {" "}
-                    {i} : {message.message}
-                  </p>
-                );
-              })}
-            </MessageList>
-            <MessageInput
-              placeholder="Send a Message"
-              onSend={handleSendRequest}
-            />
-          </ChatContainer>
-        </MainContainer>
-      </div>
-    </div>
-  );
+        const response = await fetch("https://api.openai.com/v1/chat/completions", {
+            method: "POST",
+            headers: {
+                Authorization: "Bearer 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",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(apiRequestBody),
+        });
+
+        return response.json();
+    }
+
+    return (
+        <div className="w-full h-full p-4 flex flex-col items-center">
+            <div
+                className="flex flex-col border-2 border-orange-500 items-center w-full md:w-1/2 h-96 overflow-y-scroll backdrop-blur-lg bg-opacity-40 text-white rounded-md m-4 p-2 md:p-4 text-xl md:text-2xl">
+                {messages.map((message, i) => {
+                    if (message.sender === "ChatGPT") {
+                        // TODO skip the two messages
+                        return (
+                            <span>
+                                {message.message}
+                            </span>
+                        );
+                    }
+                })}
+            </div>
+        </div>
+    );
 };
 
 export default LiveConversation;
